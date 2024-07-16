@@ -1,6 +1,15 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@common-lib": [
+        "dist/common-lib"
+      ]
+    },
     "outDir": "../../out-tsc/app",
     "types": []
   },
