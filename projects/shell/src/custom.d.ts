@@ -1,2 +1,2 @@
-declare module 'checkout';
-declare module 'shop';
+declare module 'checkout/*';
+declare module 'shop/*';

@@ -1,0 +1,5 @@
+<section class="grid grid-cols-[repeat(auto-fill,_minmax(_min(300px,100%),1fr))] gap-4 p-8">
+  @for (product of products; track product.id) {
+    <app-product-card [product]="product" />
+  }
+</section>

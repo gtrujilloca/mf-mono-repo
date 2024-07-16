@@ -6,14 +6,14 @@ export const routes: Routes = [
     path: '',
     component: HomeComponent
   },
-  // {
-  //   path: 'shop',
-  //   loadComponent: () => import('shop').then(m => m.Component)
-  // },
-  // {
-  //   path: 'checkout',
-  //   loadComponent: () => import('checkout').then(m => m.Component)
-  // },
+  {
+    path: 'shop',
+    loadComponent: () => import('shop/Component').then(c => c.AppComponent)
+  },
+  {
+    path: 'checkout',
+    loadComponent: () => import('checkout/Component').then(m => m.AppComponent)
+  },
   {
     path: '**',
     redirectTo: '',
