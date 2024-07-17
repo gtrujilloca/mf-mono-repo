@@ -1,15 +1,15 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    // "baseUrl": ".",
-    // "paths": {
-    //   "@/*": [
-    //     "./src/*"
-    //   ],
-    //   "@common-lib": [
-    //     "./dist/common-lib"
-    //   ]
-    // },
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "projects/*"
+      ],
+      "@common-lib": [
+        "projects/common-lib/src/public-api.ts"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,

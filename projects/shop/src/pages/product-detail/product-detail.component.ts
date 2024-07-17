@@ -1,6 +1,6 @@
+import { Product } from '@/shop/src/domain';
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { ProductsService } from '@/infrastructure';
-import { Product } from '@/domain';
+import { CommonLibService } from "@common-lib";
 
 @Component({
   selector: 'app-product-detail',
@@ -12,6 +12,8 @@ import { Product } from '@/domain';
 export class ProductDetailComponent implements OnInit {
   @Input() id: string = '';
   @Input() product!: Product;
+
+  private _commonLibService: CommonLibService = inject(CommonLibService);
 
   // product!: Product;
   // productSrv: ProductsService = inject(ProductsService);
@@ -26,4 +28,8 @@ export class ProductDetailComponent implements OnInit {
   // getProduct(id: string) {
   //   this.productSrv.getProduct(id).subscribe(product => this.product = product);
   // }
+
+  addToCart() {
+    this._commonLibService.addProduct(this.product);
+  }
 }

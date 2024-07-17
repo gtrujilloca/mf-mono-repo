@@ -1,4 +1,4 @@
-import { ProductDto, Product } from "@/domain";
+import { ProductDto, Product } from "@/shop/src/domain";
 
 export function mapToProduct(product: ProductDto): Product {
   const {

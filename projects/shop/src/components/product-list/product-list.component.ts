@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-// import { ProductCardComponent } from '@/components'
-import { ProductCardComponent } from '@/components'
-import { Product } from '@/domain';
+// import { ProductCardComponent } from '@/shop/src/components'
+import { ProductCardComponent } from '@/shop/src/components'
+import { Product } from '@/shop/src/domain';
 
 @Component({
   selector: 'app-product-list',

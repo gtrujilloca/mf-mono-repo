@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ProductShopComponent } from '@/pages/product-shop/product-shop.component';
-import { productDataResolver } from '@/infrastructure'
+import { ProductShopComponent } from '@/shop/src/pages/product-shop/product-shop.component';
+import { productDataResolver } from '@/shop/src/infrastructure'
 
 export const routes: Routes = [
   {
@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'products/:id',
-    loadComponent: () => import('@/pages/product-detail/product-detail.component').then(m => m.ProductDetailComponent),
+    loadComponent: () => import('@/shop/src/pages/product-detail/product-detail.component').then(m => m.ProductDetailComponent),
     resolve: {
       product: productDataResolver
     }

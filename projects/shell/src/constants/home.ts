@@ -1,4 +1,4 @@
-import { HomeLink } from "@/domain";
+import { HomeLink } from "@/shell/src/domain";
 
 export const homeLinks: HomeLink[] = [
   {

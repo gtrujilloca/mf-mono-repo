@@ -1,6 +1,7 @@
-import { Component, Input, input } from '@angular/core';
+import { Product } from '@/shop/src/domain';
+import { Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Product } from '@/domain';
+import { CommonLibService } from "@common-lib";
 
 @Component({
   selector: 'app-product-card',
@@ -14,4 +15,9 @@ import { Product } from '@/domain';
 export class ProductCardComponent {
 
   @Input() product!: Product;
+  private _commonLibService: CommonLibService = inject(CommonLibService);
+
+  addToCart(){
+    this._commonLibService.addProduct(this.product);
+  }
 }

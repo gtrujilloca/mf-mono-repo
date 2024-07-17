@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TestimonialsComponent } from '@/components';
+import { TestimonialsComponent } from '@/shell/src/components';
 
 @Component({
   selector: 'app-home',
