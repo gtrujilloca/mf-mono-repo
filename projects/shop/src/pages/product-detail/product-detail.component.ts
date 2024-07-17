@@ -9,25 +9,12 @@ import { CommonLibService } from "@common-lib";
   templateUrl: './product-detail.component.html',
   styles: ``
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent {
   @Input() id: string = '';
   @Input() product!: Product;
 
   private _commonLibService: CommonLibService = inject(CommonLibService);
 
-  // product!: Product;
-  // productSrv: ProductsService = inject(ProductsService);
-
-  ngOnInit(): void {
-    // this.getProduct(this.id);
-    // console.log(this.product);
-
-  }
-
-
-  // getProduct(id: string) {
-  //   this.productSrv.getProduct(id).subscribe(product => this.product = product);
-  // }
 
   addToCart() {
     this._commonLibService.addProduct(this.product);

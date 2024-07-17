@@ -1,6 +1,7 @@
+import { FooterComponent, HeaderComponent } from '@/shell/src/components';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent, FooterComponent } from '@/shell/src/components';
+// import { buildRoutes } from '../infrastructre/helpers/routes';
 
 
 @Component({

@@ -4,7 +4,7 @@ import { productDataResolver } from '@/shop/src/infrastructure'
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'products',
     component: ProductShopComponent
   },
   {
@@ -14,9 +14,9 @@ export const routes: Routes = [
       product: productDataResolver
     }
   },
-  {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: '',
+  //   pathMatch: 'full'
+  // }
 ];
