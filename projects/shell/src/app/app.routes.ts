@@ -9,7 +9,7 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'shop',
+    path: 'products',
     loadChildren: () =>
       loadRemoteModule({
         type: 'manifest',

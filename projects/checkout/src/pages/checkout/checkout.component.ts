@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, SkipSelf } from '@angular/core';
 import { ProductListComponent, TotalsComponent } from '@/checkout/src/components';
 import { Product } from '@/checkout/src/domain';
 import { CommonLibService } from '@/common-lib/src/public-api';
@@ -22,7 +22,9 @@ export class CheckoutComponent implements OnInit {
   };
   readonly tax = 0.15;
 
-  private _commonLibService: CommonLibService = inject(CommonLibService);
+  private _commonLibService = inject(CommonLibService);
+
+  quantity = 0;
 
   ngOnInit(): void {
     this.getData();
@@ -31,6 +33,7 @@ export class CheckoutComponent implements OnInit {
   getData() {
     this.processCheckoutData();
     this.getTotals();
+    this._commonLibService.productQuantity$.subscribe(count => this.quantity = count);
   }
 
   processCheckoutData() {
@@ -54,5 +57,7 @@ export class CheckoutComponent implements OnInit {
     this.getData();
   }
 
-
+  log() {
+    this._commonLibService.log();
+  }
 }

@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 import { Product, LocalStorageKeys } from '@/common-lib/src/lib/domain';
@@ -10,13 +10,17 @@ export class CommonLibService {
 
   private _products: Map<number, Product> = new Map<number, Product>();
 
-  productQuantity$ = signal<number>(0);
+  // productQuantity$ = signal<number>(0);
+  productQuantity$ = new BehaviorSubject<number>(0);
 
   constructor() {
+    console.log('CommonLibService created');
+
     const products = localStorage.getItem(LocalStorageKeys.PRODUCTS);
     if (products) {
       const newProducts: Product[] = JSON.parse(products);
       this._products = new Map<number, Product>(newProducts.map(product => [product.id, product]));
+      this.updateCartQuantity();
     }
   }
 
@@ -39,12 +43,19 @@ export class CommonLibService {
   }
 
   updateCartQuantity() {
-    this._products.forEach((product) => {
-      this.productQuantity$.update(prev => prev + product.quantity);
-    })
+    let count = 0;
+    this._products.forEach((product) => count += product.quantity);
+    // this.productQuantity$.set(count);
+    this.productQuantity$.next(count);
   }
 
   getProducts(): Product[] {
     return Array.from(this._products.values());
+  }
+
+  log(){
+    // console.log(this.productQuantity$());
+    // this.productQuantity$.update(count => count + 1);
+    this.productQuantity$.next(this.productQuantity$.value + 1);
   }
 }

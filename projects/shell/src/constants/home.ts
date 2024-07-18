@@ -8,7 +8,7 @@ export const homeLinks: HomeLink[] = [
   },
   {
     id: "shop",
-    href: "/shop/products",
+    href: "/products",
     title: "Shop",
   },
   {

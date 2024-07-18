@@ -29,8 +29,16 @@
             class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
             routerLink="/checkout"
           >
-            {{ productQuantity$() }}
+            {{ quantity }}
           </a>
+        </div>
+        <div class="sm:flex sm:gap-4">
+          <button
+            class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
+            (click)="log()"
+          >
+            Add
+          </button>
         </div>
 
         <div class="block md:hidden">

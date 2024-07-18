@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { Product, ProductDto } from '@/shop/src/domain';
 import { mapToProduct } from '@/shop/src/infrastructure';
 @Injectable({
@@ -14,14 +14,29 @@ export class ProductsService {
   getProducts(): Observable<Product[]> {
     return this.http.get<ProductDto[]>(`${this.url}/products`)
       .pipe(
-        map(response => response.map(mapToProduct))
+        map(response => response.map(mapToProduct)),
+        catchError(err => {
+          console.log(err);
+          return of([])
+        })
       )
   }
 
   getProduct(id:string): Observable<Product> {
     return this.http.get<ProductDto>(`${this.url}/products/${id}`)
       .pipe(
-        map(mapToProduct)
+        map(mapToProduct),
+        catchError(err => {
+          console.log(err);
+          return of({
+            id: 0,
+            title: '',
+            price: '',
+            description: '',
+            category: '',
+            image: '',
+          })
+        })
       )
   }
 }

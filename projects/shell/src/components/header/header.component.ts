@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HomeLink } from '@/shell/src/domain';
 import { homeLinks } from '@/shell/src/constants';
 import { RouterLink } from '@angular/router';
 import { CommonLibService } from "@common-lib";
 import { AsyncPipe } from '@angular/common';
+import { effect } from "@angular/core"
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,29 @@ import { AsyncPipe } from '@angular/common';
     AsyncPipe
   ],
   templateUrl: './header.component.html',
-  styles: ``
+  styles: ``,
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   links: HomeLink[] = homeLinks;
   private _commonLibService: CommonLibService = inject(CommonLibService);
-  productQuantity$ = this._commonLibService.productQuantity$;
+  quantity = 0;
+  // private _detectorRef = inject(ChangeDetectorRef);
+  // productQuantity = this._commonLibService.productQuantity$;
+
+  constructor() {
+    // effect(() => {
+    //   console.log(this._commonLibService.productQuantity$());
+    // })
+
+  }
+  ngOnInit(): void {
+    // this._detectorRef.detectChanges();
+    this._commonLibService.productQuantity$.subscribe(count => this.quantity = count);
+  }
+
+  log() {
+    this._commonLibService.log();
+  }
 
 }
