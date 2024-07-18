@@ -4,11 +4,11 @@ import { productDataResolver } from '@/shop/src/infrastructure'
 
 export const routes: Routes = [
   {
-    path: 'products',
+    path: '',
     component: ProductShopComponent
   },
   {
-    path: 'products/:id',
+    path: ':id',
     loadComponent: () => import('@/shop/src/pages/product-detail/product-detail.component').then(m => m.ProductDetailComponent),
     resolve: {
       product: productDataResolver

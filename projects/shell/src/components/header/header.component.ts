@@ -19,10 +19,6 @@ import { AsyncPipe } from '@angular/common';
 export class HeaderComponent {
   links: HomeLink[] = homeLinks;
   private _commonLibService: CommonLibService = inject(CommonLibService);
-
-  get getCartCount():  Observable<number> {
-    return this._commonLibService.channelQuantity$;
-  }
-
+  productQuantity$ = this._commonLibService.productQuantity$;
 
 }
