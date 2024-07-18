@@ -1,0 +1,17 @@
+
+    <dl class="space-y-0.5 text-sm text-gray-700">
+      <div class="flex justify-between">
+        <dt>Subtotal</dt>
+        <dd>{{data.subtotal | currency: 'USD':'symbol':'3.1-1'}}</dd>
+      </div>
+
+      <div class="flex justify-between">
+        <dt>IVA</dt>
+        <dd>{{data.tax | currency: 'USD':'symbol':'3.1-1'}}</dd>
+      </div>
+
+      <div class="flex justify-between !text-base font-medium">
+        <dt>Total</dt>
+        <dd>{{data.total | currency: 'USD':'symbol':'3.1-1'}}</dd>
+      </div>
+    </dl>

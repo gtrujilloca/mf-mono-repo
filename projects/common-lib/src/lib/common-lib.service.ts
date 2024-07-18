@@ -43,4 +43,8 @@ export class CommonLibService {
       this.productQuantity$.update(prev => prev + product.quantity);
     })
   }
+
+  getProducts(): Product[] {
+    return Array.from(this._products.values());
+  }
 }
