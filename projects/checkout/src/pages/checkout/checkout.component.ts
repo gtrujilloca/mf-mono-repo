@@ -1,7 +1,6 @@
 import { ProductListComponent, TotalsComponent } from '@/checkout/src/components';
 import { Product } from '@/checkout/src/domain';
 import { CommonLibService } from '@/common-lib/src/public-api';
-import { shellStore } from '@/shell/src/state';
 import { Component, inject, OnInit } from '@angular/core';
 
 @Component({
@@ -11,12 +10,7 @@ import { Component, inject, OnInit } from '@angular/core';
     ProductListComponent,
     TotalsComponent
   ],
-  providers: [
-    // {
-    //   provide: shellStore,
-    //   useExisting: shellStore
-    // }
-  ],
+
   templateUrl: './checkout.component.html',
   styles: ``
 })
@@ -31,7 +25,9 @@ export class CheckoutComponent implements OnInit {
 
   private _commonLibService = inject(CommonLibService);
   quantity = 0;
-  readonly store = inject(shellStore, { host: true });
+  private _sharedStore = inject(CommonLibService);
+  readonly store = this._sharedStore.getStore();
+  // readonly store = inject(shellStore, { host: true });
 
   ngOnInit(): void {
     this.getData();

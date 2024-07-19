@@ -1,6 +1,6 @@
+import { CommonLibService } from '@/common-lib/src/public-api';
 import { homeLinks } from '@/shell/src/constants';
 import { HomeLink } from '@/shell/src/domain';
-import { shellStore } from '@/shell/src/state';
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -19,7 +19,8 @@ import { RouterLink } from '@angular/router';
 export class HeaderComponent implements OnInit {
   links: HomeLink[] = homeLinks;
   // private _commonLibService: CommonLibService = inject(CommonLibService);
-  readonly store = inject(shellStore, { skipSelf: true });
+  private _sharedStore = inject(CommonLibService);
+  readonly store = this._sharedStore.getStore();
   quantity = computed(() => this.store.cartQuantity());
 
   constructor() {
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit {
   log() {
     // this._commonLibService.log();
    console.log(this.quantity());
+   this.store.addProduct({id: +new Date().getTime().toFixed(0), title: 'test3', price: '10', description: 'test', image: ''})
   }
 
 }

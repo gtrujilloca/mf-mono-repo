@@ -1,4 +1,3 @@
-import { shellStore } from '@/shell/src/state';
 import { Product } from '@/shop/src/domain';
 import { Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -10,6 +9,7 @@ import { CommonLibService } from "@common-lib";
   imports: [
     RouterLink
   ],
+
   templateUrl: './product-card.component.html',
   styles: ``
 })
@@ -17,7 +17,9 @@ export class ProductCardComponent {
 
   @Input() product!: Product;
   private _commonLibService: CommonLibService = inject(CommonLibService);
-  readonly store = inject(shellStore);
+  // readonly store = inject(shellStore);
+  private _sharedStore = inject(CommonLibService);
+  readonly store = this._sharedStore.getStore();
 
 
   addToCart(){
