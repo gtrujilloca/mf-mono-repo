@@ -1,7 +1,8 @@
-import { Component, inject, OnInit, SkipSelf } from '@angular/core';
 import { ProductListComponent, TotalsComponent } from '@/checkout/src/components';
 import { Product } from '@/checkout/src/domain';
 import { CommonLibService } from '@/common-lib/src/public-api';
+import { shellStore } from '@/shell/src/state';
+import { Component, inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-checkout',
@@ -10,11 +11,17 @@ import { CommonLibService } from '@/common-lib/src/public-api';
     ProductListComponent,
     TotalsComponent
   ],
+  providers: [
+    // {
+    //   provide: shellStore,
+    //   useExisting: shellStore
+    // }
+  ],
   templateUrl: './checkout.component.html',
   styles: ``
 })
 export class CheckoutComponent implements OnInit {
-  products: Product [] = []
+  products: Product[] = []
   totals = {
     subtotal: 0,
     tax: 0,
@@ -23,8 +30,8 @@ export class CheckoutComponent implements OnInit {
   readonly tax = 0.15;
 
   private _commonLibService = inject(CommonLibService);
-
   quantity = 0;
+  readonly store = inject(shellStore, { host: true });
 
   ngOnInit(): void {
     this.getData();
@@ -33,11 +40,14 @@ export class CheckoutComponent implements OnInit {
   getData() {
     this.processCheckoutData();
     this.getTotals();
-    this._commonLibService.productQuantity$.subscribe(count => this.quantity = count);
+    // this._commonLibService.productQuantity$.subscribe(count => this.quantity = count);
+    this.quantity = this.store.cartQuantity();
   }
 
   processCheckoutData() {
-    this.products = this._commonLibService.getProducts();
+    // this.products = this._commonLibService.getProducts();
+    this.products = Array.from(this.store.cartProducts().values());
+    console.log(this.products);
   }
 
   getTotals() {
@@ -52,12 +62,16 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  removeProduct(productId: number ) {
-    this._commonLibService.removeProduct(productId);
+  removeProduct(productId: number) {
+    // this._commonLibService.removeProduct(productId);
+    this.store.removeProduct(productId);
     this.getData();
   }
 
   log() {
-    this._commonLibService.log();
+    console.log(this.store.cartProducts());
+    console.log(this.store.cartQuantity());
+
+
   }
 }
