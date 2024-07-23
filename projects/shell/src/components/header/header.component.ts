@@ -1,4 +1,4 @@
-import { CommonLibService } from '@/common-lib/src/public-api';
+import { CommonLibService } from '@common-lib';
 import { homeLinks } from '@/shell/src/constants';
 import { HomeLink } from '@/shell/src/domain';
 import { AsyncPipe } from '@angular/common';

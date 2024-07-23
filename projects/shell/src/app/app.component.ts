@@ -1,4 +1,4 @@
-import { CommonLibService } from '@/common-lib/src/public-api';
+import { CommonLibService } from '@common-lib';
 import { FooterComponent, HeaderComponent } from '@/shell/src/components';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';

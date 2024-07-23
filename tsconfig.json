@@ -8,7 +8,7 @@
       ],
       "@common-lib": [
         "projects/common-lib/src/public-api.ts"
-      ]
+      ],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

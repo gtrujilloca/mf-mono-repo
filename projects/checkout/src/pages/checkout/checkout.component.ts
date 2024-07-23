@@ -1,7 +1,7 @@
 import { ProductListComponent, TotalsComponent } from '@/checkout/src/components';
 import { Product } from '@/checkout/src/domain';
-import { CommonLibService } from '@/common-lib/src/public-api';
 import { Component, inject, OnInit } from '@angular/core';
+import { CommonLibService } from '@common-lib';
 
 @Component({
   selector: 'app-checkout',
@@ -10,7 +10,6 @@ import { Component, inject, OnInit } from '@angular/core';
     ProductListComponent,
     TotalsComponent
   ],
-
   templateUrl: './checkout.component.html',
   styles: ``
 })
@@ -23,7 +22,6 @@ export class CheckoutComponent implements OnInit {
   };
   readonly tax = 0.15;
 
-  private _commonLibService = inject(CommonLibService);
   quantity = 0;
   private _sharedStore = inject(CommonLibService);
   readonly store = this._sharedStore.getStore();

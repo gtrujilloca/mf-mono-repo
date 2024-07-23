@@ -1,7 +1,5 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { inject, Injectable } from '@angular/core';
 
-import { Product, LocalStorageKeys } from '@/common-lib/src/lib/domain';
 import { shellStore } from '@/shell/src/state';
 
 @Injectable({
@@ -14,7 +12,6 @@ export class CommonLibService {
 
   constructor() {
     console.log("se creo un servicio con id: ", this.id);
-
   }
 
   getStore() {

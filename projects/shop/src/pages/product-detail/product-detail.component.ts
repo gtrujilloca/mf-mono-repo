@@ -13,10 +13,11 @@ export class ProductDetailComponent {
   @Input() id: string = '';
   @Input() product!: Product;
 
-  // private _commonLibService: CommonLibService = inject(CommonLibService);
-
+  private _commonLibService: CommonLibService = inject(CommonLibService);
+  private readonly storage = this._commonLibService.getStore();
 
   addToCart() {
     // this._commonLibService.addProduct(this.product);
+    this.storage.addProduct(this.product);
   }
 }
